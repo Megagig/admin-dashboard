@@ -1,9 +1,9 @@
+import { useState } from 'react';
+import Router from './router/Router';
+
 function App() {
-  return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">Admin Dashboard</h1>
-    </div>
-  );
+  const [allRoutes, setAllroutes] = useState([]);
+  return <Router allRoutes={allRoutes} />;
 }
 
 export default App;

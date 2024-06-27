@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   return (
@@ -42,6 +43,28 @@ const Register = () => {
                 placeholder="Password"
                 required
               />
+            </div>
+            <div className="flex items-center w-full gap-3 mb-3">
+              <input
+                className="w-4 h-4  text-blue-600 overflow-hidden bg-gray-200 rounded border-gray-300 focus:ring-blue-500"
+                type="checkbox"
+                name="checkbox"
+                id="checkbox"
+              />
+              <label htmlFor="checkbox">
+                I Agree to terms & Privacy policy
+              </label>
+            </div>
+            <button className="bg-slate-800 w-full hover: shadow-blue-300/hover: shawdow-lg text-white rounded-md px-7 py-2 mb-3">
+              Sign Up
+            </button>
+            <div className="flex items-center gap-3 mb-3 justify-center">
+              <p>
+                Already Have an Account?{' '}
+                <Link to="/login" className="font-bold">
+                  Sign In
+                </Link>
+              </p>
             </div>
           </form>
         </div>

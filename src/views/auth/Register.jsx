@@ -21,6 +21,28 @@ const Register = () => {
                 required
               />
             </div>
+            <div className="flex flex-col w-full gap-1 mb-3">
+              <label htmlFor="name">Email</label>
+              <input
+                className="px-3 py-2 outline-none border border-slate-400 bg-transparent rounded-md"
+                type="text"
+                name="email"
+                id="email"
+                placeholder="Email"
+                required
+              />
+            </div>
+            <div className="flex flex-col w-full gap-1 mb-3">
+              <label htmlFor="name">Password</label>
+              <input
+                className="px-3 py-2 outline-none border border-slate-400 bg-transparent rounded-md"
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                required
+              />
+            </div>
           </form>
         </div>
       </div>

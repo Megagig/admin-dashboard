@@ -9,6 +9,7 @@ export const authReducer = createSlice({
     userInfo: '',
   },
   reducers: {},
+
   extraReducers: () => {},
 });
 

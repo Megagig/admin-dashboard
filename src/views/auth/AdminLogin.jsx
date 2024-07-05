@@ -50,7 +50,7 @@ const AdminLogin = () => {
       dispatch(messageClear());
       navigate('/');
     }
-  }, [errorMessage, successMessage]);
+  }, [errorMessage, successMessage, dispatch, navigate]);
   return (
     <div className="min-w-screen min-h-screen bg-[#cdcae9] flex justify-center items-center">
       <div className="w-[350px] text-[#ffffff] p-2">

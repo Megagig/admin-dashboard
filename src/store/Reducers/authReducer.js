@@ -10,6 +10,8 @@ export const admin_login = createAsyncThunk(
         withCredentials: true,
       });
 
+      localStorage.setItem('accessToken', data.token);
+
       return fulfillWithValue(data);
       // console.log(data);
     } catch (error) {

@@ -51,6 +51,15 @@ const AddProduct = () => {
 
   const categorySearch = (e) => {
     const value = e.target.value;
+    setSearchValue(value);
+    if (value) {
+      let srcValue = allCategory.filter(
+        (c) => c.name.toLowerCase().indexOf(value.toLowerCase()) > -1
+      );
+      setAllCategory(srcValue);
+    } else {
+      setAllCategory(categorys);
+    }
   };
 
   return (
@@ -113,6 +122,7 @@ const AddProduct = () => {
                 >
                   <div className="w-full px-4 py-2 fixed">
                     <input
+                      value={searchValue}
                       onChange={categorySearch}
                       className="px-3 py-1 w-full focus:border-indigo-500 outline-none bg-transparent border border-slate-700 rounded-md text-[#d0d2d6] overflow-hidden"
                       type="text"
@@ -120,9 +130,12 @@ const AddProduct = () => {
                     />
                   </div>
                   <div className="pt-14"></div>
-                  <div className="flex justify-start items-start flex-col h-[200px] overflow-x-scroll">
+                  <div className="flex justify-start items-start flex-col h-[200px] overflow-scroll">
                     {allCategory.map((c, i) => (
                       <span
+                        className={`px-4 py-2 hover:bg-indigo-500 hover:text-white hover:shadow-lg w-full cursor-pointer ${
+                          category === c.name && 'bg-indigo-500'
+                        }`}
                         onClick={() => {
                           setCateShow(false);
                           setCategory(c.name);

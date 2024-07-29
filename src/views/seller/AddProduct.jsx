@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IoMdImages } from 'react-icons/io';
+import { IoMdCloseCircle } from 'react-icons/io';
 
 const AddProduct = () => {
   const categorys = [
@@ -92,6 +93,14 @@ const AddProduct = () => {
     }
   };
   //   console.log(images);
+
+  const removeImage = (i) => {
+    const filterImage = images.filter((img, index) => index !== i);
+    const filterImageUrl = imageShow.filter((img, index) => index !== i);
+
+    setImages(filterImage);
+    setImageShow(filterImageUrl);
+  };
 
   return (
     <div className="px-2 lg:px-7 pt-5">
@@ -252,6 +261,12 @@ const AddProduct = () => {
                     id={i}
                     className="hidden"
                   />
+                  <span
+                    onClick={() => removeImage(i)}
+                    className="p-2 z-10 cursor-pointer bg-slate-700 hover:shadow-lg hover:shadow-slate-400/50 text-white absolute top-1 right-1 rounded-full"
+                  >
+                    <IoMdCloseCircle />
+                  </span>
                 </div>
               ))}
               <label
@@ -270,6 +285,11 @@ const AddProduct = () => {
                 type="file"
                 id="image"
               />
+            </div>
+            <div className="flex">
+              <button className="bg-red-500  hover:shadow-red-500/40 hover:shadow-md text-white rounded-md px-7 py-2 my-2">
+                Add Product
+              </button>
             </div>
           </form>
         </div>

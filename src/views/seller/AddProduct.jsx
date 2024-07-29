@@ -2,6 +2,32 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const AddProduct = () => {
+  const categorys = [
+    {
+      id: 1,
+      name: 'Sports',
+    },
+    {
+      id: 2,
+      name: 'Tshirt',
+    },
+    {
+      id: 3,
+      name: 'Mobile',
+    },
+    {
+      id: 4,
+      name: 'Computer',
+    },
+    {
+      id: 5,
+      name: 'Watch',
+    },
+    {
+      id: 6,
+      name: 'Pant',
+    },
+  ];
   const [state, setState] = useState({
     name: '',
     description: '',
@@ -16,6 +42,15 @@ const AddProduct = () => {
       ...state,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const [cateShow, setCateShow] = useState(false);
+  const [category, setCategory] = useState('');
+  const [allCategory, setAllCategory] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
+
+  const categorySearch = (e) => {
+    const value = e.target.value;
   };
 
   return (
@@ -43,7 +78,77 @@ const AddProduct = () => {
                 />
               </div>
 
-              <div className="flex flex-col w-full gap-1"></div>
+              <div className="flex flex-col w-full gap-1">
+                <label htmlFor="brand">Product Brand</label>
+                <input
+                  className="px-4 py-2 focus:border-indigo-500 outline-none bg-[#6a5fdf] border border-slate-700 rounded-md text-[#d0d2d6]"
+                  onChange={inputHandle}
+                  value={state.brand}
+                  type="text"
+                  name="brand"
+                  id="brand"
+                  placeholder="Product Brand"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col mb-3 md:flex-row gap-4 w-full text-[#d0d2d6]">
+              <div className="flex flex-col w-full gap-1 relative">
+                <label htmlFor="category">Category</label>
+                <input
+                  readOnly
+                  onClick={() => setCateShow(!cateShow)}
+                  className="px-4 py-2 focus:border-indigo-500 outline-none bg-[#6a5fdf] border border-slate-700 rounded-md text-[#d0d2d6]"
+                  onChange={inputHandle}
+                  value={category}
+                  type="text"
+                  id="category"
+                  placeholder="Category"
+                />
+
+                <div
+                  className={`absolute top-[101%] bg-[#475569] w-full transition-all ${
+                    cateShow ? 'scale-100' : 'scale-0'
+                  } `}
+                >
+                  <div className="w-full px-4 py-2 fixed">
+                    <input
+                      onChange={categorySearch}
+                      className="px-3 py-1 w-full focus:border-indigo-500 outline-none bg-transparent border border-slate-700 rounded-md text-[#d0d2d6] overflow-hidden"
+                      type="text"
+                      placeholder="search"
+                    />
+                  </div>
+                  <div className="pt-14"></div>
+                  <div className="flex justify-start items-start flex-col h-[200px] overflow-x-scroll">
+                    {allCategory.map((c, i) => (
+                      <span
+                        onClick={() => {
+                          setCateShow(false);
+                          setCategory(c.name);
+                          setSearchValue('');
+                          setAllCategory(categorys);
+                        }}
+                      >
+                        {c.name}{' '}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col w-full gap-1">
+                <label htmlFor="stock">Product Stock</label>
+                <input
+                  className="px-4 py-2 focus:border-indigo-500 outline-none bg-[#6a5fdf] border border-slate-700 rounded-md text-[#d0d2d6]"
+                  onChange={inputHandle}
+                  value={state.stock}
+                  type="text"
+                  name="stock"
+                  id="stock"
+                  placeholder="Stock"
+                />
+              </div>
             </div>
           </form>
         </div>

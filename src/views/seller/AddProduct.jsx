@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { IoMdImages } from 'react-icons/io';
 
 const AddProduct = () => {
   const categorys = [
@@ -61,6 +62,36 @@ const AddProduct = () => {
       setAllCategory(categorys);
     }
   };
+  const [images, setImages] = useState([]);
+  const [imageShow, setImageShow] = useState([]);
+
+  const imageHandle = (e) => {
+    const files = e.target.files;
+    const length = files.length;
+    if (length > 0) {
+      setImages([...images, ...files]);
+      let imageUrl = [];
+      for (let i = 0; i < length; i++) {
+        imageUrl.push({ url: URL.createObjectURL(files[i]) });
+      }
+      setImageShow([...imageShow, ...imageUrl]);
+    }
+  };
+  // console.log(images)
+  // console.log(imageShow)
+
+  const changeImage = (img, index) => {
+    if (img) {
+      let tempUrl = imageShow;
+      let tempImages = images;
+
+      tempImages[index] = img;
+      tempUrl[index] = { url: URL.createObjectURL(img) };
+      setImageShow([...tempUrl]);
+      setImages([...tempImages]);
+    }
+  };
+  //   console.log(images);
 
   return (
     <div className="px-2 lg:px-7 pt-5">
@@ -190,7 +221,7 @@ const AddProduct = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-col w-full gap-1">
+            <div className="flex flex-col w-full gap-1 mb-5">
               <label htmlFor="description" className="text-[#d0d2d6]">
                 Description
               </label>
@@ -204,6 +235,41 @@ const AddProduct = () => {
                 cols="10"
                 rows="4"
               ></textarea>
+            </div>
+            <div className="grid lg:grid-cols-4 grid-cols-1 md:grid-cols-3 sm:grid-cols-2 sm:gap-4 md:gap-4 gap-3 w-full text-[#d0d2d6] mb-4">
+              {imageShow.map((img, i) => (
+                <div className="h-[180px] relative">
+                  <label htmlFor={i}>
+                    <img
+                      className="w-full h-full rounded-sm"
+                      src={img.url}
+                      alt=""
+                    />
+                  </label>
+                  <input
+                    onChange={(e) => changeImage(e.target.files[0], i)}
+                    type="file"
+                    id={i}
+                    className="hidden"
+                  />
+                </div>
+              ))}
+              <label
+                className="flex justify-center items-center flex-col h-[180px] cursor-pointer border border-dashed hover:border-red-500 w-full text-[#d0d2d6]"
+                htmlFor="image"
+              >
+                <span>
+                  <IoMdImages />
+                </span>
+                <span>Select Image </span>
+              </label>
+              <input
+                className="hidden"
+                onChange={imageHandle}
+                multiple
+                type="file"
+                id="image"
+              />
             </div>
           </form>
         </div>

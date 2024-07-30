@@ -35,6 +35,7 @@ const SellerToCustomer = () => {
                   />
                   <div className="w-[10px] h-[10px] bg-green-500 rounded-full absolute right-0 bottom-0"></div>
                 </div>
+
                 <div className="flex justify-center items-start flex-col w-full">
                   <div className="flex justify-between items-center w-full">
                     <h2 className="text-base font-semibold">Linus Ezeode</h2>
@@ -91,6 +92,7 @@ const SellerToCustomer = () => {
                     />
                     <div className="w-[10px] h-[10px] bg-green-500 rounded-full absolute right-0 bottom-0"></div>
                   </div>
+                  <h2 className="text-base text-white font-semibold"> Linus</h2>
                 </div>
               )}
               <div

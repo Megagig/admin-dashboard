@@ -83,15 +83,10 @@ const EditProduct = () => {
   // console.log(images)
   // console.log(imageShow)
 
-  const changeImage = (img, index) => {
-    if (img) {
-      let tempUrl = imageShow;
-      let tempImages = images;
-
-      tempImages[index] = img;
-      tempUrl[index] = { url: URL.createObjectURL(img) };
-      setImageShow([...tempUrl]);
-      setImages([...tempImages]);
+  const changeImage = (img, files) => {
+    if (files.length > 0) {
+      console.log(img);
+      console.log(files[0]);
     }
   };
 
@@ -271,45 +266,18 @@ const EditProduct = () => {
 
             <div className="grid lg:grid-cols-4 grid-cols-1 md:grid-cols-3 sm:grid-cols-2 sm:gap-4 md:gap-4 gap-3 w-full text-[#d0d2d6] mb-4">
               {imageShow.map((img, i) => (
-                <div className="h-[180px] relative">
+                <div>
                   <label htmlFor={i}>
-                    <img
-                      className="w-full h-full rounded-sm"
-                      src={img}
-                      alt=""
-                    />
+                    <img src={img} alt="" />
                   </label>
                   <input
-                    onChange={(e) => changeImage(e.target.files[0], i)}
+                    onChange={(e) => changeImage(img, e.target.files)}
                     type="file"
                     id={i}
                     className="hidden"
                   />
-                  <span
-                    onClick={() => removeImage(i)}
-                    className="p-2 z-10 cursor-pointer bg-slate-700 hover:shadow-lg hover:shadow-slate-400/50 text-white absolute top-1 right-1 rounded-full"
-                  >
-                    <IoMdCloseCircle />
-                  </span>
                 </div>
               ))}
-
-              <label
-                className="flex justify-center items-center flex-col h-[180px] cursor-pointer border border-dashed hover:border-red-500 w-full text-[#d0d2d6]"
-                htmlFor="image"
-              >
-                <span>
-                  <IoMdImages />
-                </span>
-                <span>Select Image </span>
-              </label>
-              <input
-                className="hidden"
-                onChange={imageHandle}
-                multiple
-                type="file"
-                id="image"
-              />
             </div>
 
             <div className="flex">
